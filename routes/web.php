@@ -27,4 +27,12 @@ Route::get('/shipping-partners', function () {
     return view('shipping_partners');
 })->middleware(['auth'])->name('shipping.partners');
 
+// Route::post('/recordSale', 'SalesController@recordSale');
+
+Route::post('/recordSale', 'App\Http\Controllers\SalesController@recordSale');
+Route::get('/getSalesData', 'App\Http\Controllers\SalesController@getSalesData');
+
+
+
+
 require __DIR__.'/auth.php';
