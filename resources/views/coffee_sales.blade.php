@@ -19,10 +19,10 @@
                             </select>
                             <label for="quantity">Quantity</label>
                             <input type="number" id="quantity" name="quantity" oninput="calculateSellingPrice()" required>
-                            <span id="quantity-error" class="input-error" style="display: none;">Only numbers allowed</span>
+                            <!-- <span id="quantity-error" class="input-error" style="display: none;">Only numbers allowed</span> -->
                             <label for="unit_cost">Unit Cost (£)</label>
                             <input type="number" id="unit_cost" name="unit_cost" oninput="calculateSellingPrice()" required>
-                            <span id="cost-error" class="input-error" style="display: none;">Only numbers allowed</span>
+                            <!-- <span id="cost-error" class="input-error" style="display: none;">Only numbers allowed</span> -->
                             <label for="selling_price">Selling Price</label>
                             <span id="selling_price"></span>
                             <div class="button-container">
@@ -37,13 +37,13 @@
                                 <tr>
                                     <th>Product</th>
                                     <th>Quantity</th>
-                                    <th>Unit Cost (£)</th>
-                                    <th>Selling Price (£)</th>
+                                    <th>Unit Cost</th>
+                                    <th>Selling Price</th>
                                     <th>Sold At</th>
                                 </tr>
                             </thead>
                             <tbody id="sales-table-body">
-                                <!-- Sales data will be dynamically added here -->
+                              
                             </tbody>
                         </table>
                     </div>
@@ -169,6 +169,7 @@
             success: function(response) {
                 alert('Sale recorded successfully!');
                 fetchSalesData();
+                resetQuantityAndCost();
             },
 
             error: function(xhr, status, error) {
@@ -206,8 +207,8 @@
                 var row = document.createElement('tr');
                 row.innerHTML = '<td>' + productName + '</td>' +
                                 '<td>' + sale.quantity + '</td>' +
-                                '<td>' + sale.unit_cost + '</td>' +
-                                '<td>' + sale.selling_price + '</td>' +
+                                '<td>' +'£' + sale.unit_cost + '</td>' +
+                                '<td>' +'£' +sale.selling_price + '</td>' +
                                 '<td>' + sale.sold_at + '</td>';
                 tableBody.appendChild(row);
             });
@@ -218,18 +219,6 @@
         document.getElementById('quantity').value = '';
         document.getElementById('unit_cost').value = '';
         document.getElementById('selling_price').textContent = ''; 
-    }
-
-    function checkInput(inputId, errorMessageId) {
-        var input = document.getElementById(inputId);
-        var errorMessage = document.getElementById(errorMessageId);
-        var inputValue = input.value;
-
-        if (inputValue !== '' && !/^\d+$/.test(inputValue)) {
-            errorMessage.style.display = 'inline';
-        } else {
-            errorMessage.style.display = 'none';
-        }
     }
 
 
