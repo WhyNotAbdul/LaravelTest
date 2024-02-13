@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    
+    app('session')->put('disable_notification',true);
+
     return redirect()->route('login');
 });
 
@@ -23,6 +26,10 @@ Route::get('/sales', function () {
     return view('coffee_sales');
 })->middleware(['auth'])->name('coffee.sales');
 
+Route::get('/arabic_sales', function () {
+    return view('coffee_arabic_sales');
+})->middleware(['auth'])->name('coffee_arabic.sales');
+
 Route::get('/shipping-partners', function () {
     return view('shipping_partners');
 })->middleware(['auth'])->name('shipping.partners');
@@ -31,6 +38,7 @@ Route::get('/shipping-partners', function () {
 
 Route::post('/recordSale', 'App\Http\Controllers\SalesController@recordSale');
 Route::get('/getSalesData', 'App\Http\Controllers\SalesController@getSalesData');
+Route::get('/getProductsData', 'App\Http\Controllers\SalesController@getProductsData');
 
 
 

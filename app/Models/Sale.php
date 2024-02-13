@@ -13,7 +13,12 @@ class Sale extends Model
         'quantity',
         'unit_cost',
         'selling_price',
-        'product_name',
+        'product_id',
         'sold_at',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

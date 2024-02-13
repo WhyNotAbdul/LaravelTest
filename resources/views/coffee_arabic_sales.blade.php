@@ -12,16 +12,22 @@
                     <!-- @todo -->
                     <form>
                         <div class="input-row">
+                            <label for="product">Product</label>
+                            <select id="product" name="product" onchange="resetQuantityAndCost()">
+                                
+                            </select>
+
                             <label for="quantity">Quantity</label>
                             <input type="number" id="quantity" name="quantity" oninput="calculateSellingPrice()" required>
                             <span id="quantity-error" class="input-error"></span>
                             <label for="unit_cost">Unit Cost (£)</label>
                             <input type="number" id="unit_cost" name="unit_cost" oninput="calculateSellingPrice()" required>
                             <span id="cost-error" class="input-error"></span>
+                            
                             <label for="selling_price">Selling Price</label>
                             <span id="selling_price"></span>
                             <div class="button-container">
-                                <button id="record_sale_btn" type="button" onclick="recordSale()">Record Sale</button>
+                                <button id="record_sale_btn" type="button" onclick="recordSale(document.getElementById('product').value)">Record Sale</button>
                             </div>
                         </div> 
                     </form>
@@ -30,9 +36,11 @@
                         <table id="sales-table" border="1">
                             <thead>
                                 <tr>
+                                    <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Unit Cost</th>
                                     <th>Selling Price</th>
+                                    <th>Sold At</th>
                                 </tr>
                             </thead>
                             <tbody id="sales-table-body">
@@ -48,4 +56,5 @@
 </x-app-layout>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script src="{{ asset('js/common.js') }}"></script>
